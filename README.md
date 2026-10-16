@@ -52,7 +52,7 @@ These are **locally reported development checks**, not a claim of external certi
 
 ## Lyra Dev Agent 2.0 — autonomous Python development (October 16, 2026)
 
-A separate local-first development-agent prototype reached a **three-module sandbox milestone**: Qwen2.5-Coder 14B planned and generated collaborating Python modules under `src/`; the developer's independent verification reported **3/3 files present** and **4/4 functional assertions passed**. Automatic promotion remained disabled. This is a controlled example, **not a production-ready or generally autonomous software-engineering release**.
+A separate local-first development-agent prototype reached a **three-module sandbox milestone**: Qwen2.5-Coder 14B planned and generated collaborating Python modules under `src/`; the developer's independent verification reported **3/3 files present** and **4/4 functional assertions passed**. Automatic promotion remained disabled. A subsequent test-engine milestone replaced the example-specific three-file dependency rule with **generalized explicit-dependency validation**. Focused tests covered Hungarian/English instructions, ambiguous file references, missing dependencies, and circular dependencies; the existing regression suite passed. A local checkpoint was hash-checked (15 files), with key source/backup matches confirmed. These are developer-reported tests, **not a production-ready or generally autonomous software-engineering release**.
 
 **[Read the detailed milestone report, architecture, tests, safeguards, known limitations, and roadmap](docs/dev-agent-2-milestone-2026-10-16.md).**
 
