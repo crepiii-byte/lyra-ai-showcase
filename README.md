@@ -1,6 +1,6 @@
 # Lyra AI — Local AI Assistant & German Language Tutor
 
-**Status:** Working prototype · **German Teacher Milestone 1 accepted: October 15, 2026** · Multi-turn validation in progress (October 16, 2026)
+**Status:** Lyra V1 working prototype · **German Teacher V1 core accepted: October 16, 2026** · Daily launcher improvement pending
 
 Lyra V1 is an experimental local-first AI assistant exploring Python automation, locally hosted language models, speech interfaces, Windows controller integration, and smart-home systems.
 
@@ -34,7 +34,7 @@ A controlled **single-turn V1 microphone test** was completed and accepted by th
 
 These are measurements from a locally reported controlled test, **not independently verified production benchmarks**.
 
-## Multi-turn validation — October 16, 2026
+## Multi-turn validation and core acceptance — October 16, 2026
 A subsequent **three-turn controlled test completed all three turns**. The developer reported that the synthesized replies were understandable and accepted the audio quality.
 
 The validation also exposed remaining issues:
@@ -42,10 +42,12 @@ The validation also exposed remaining issues:
 - A spoken or recognized final question did not match the intended memory-recall prompt; therefore recall of the earlier person/city/day facts **was not conclusively validated**.
 - A visible example of an incorrect grammar correction showed that fluent speech does **not** establish teaching accuracy.
 
-**Status:** Audio quality accepted for this test; grammar-correction reliability and multi-turn memory acceptance remain **pending**. The project is **not declared complete**.
+**Updated status:** Following targeted corrections, the developer accepted the final controlled one-turn memory-recall test on October 16, 2026. The locally reported response recalled the previously supplied person, city and day, and the developer accepted voice clarity, pacing, and content. The German Teacher **V1 core feature set is closed as HUMAN PASS**, while the broader Lyra assistant remains in development. The earlier failed correction attempt remains part of the test history.
 
 ## Integration and safeguards
 Local test reports describe guarded V1 integration, controlled staging runs, backup/rollback checks, preservation of existing V1 functions, and a separately isolated local model endpoint for Teacher testing so another running Ollama service need not be interrupted.
+
+The final local handoff reported checks passing for the voice, grammar feedback, Hungarian explanation, memory recall, caption display, integrity/rollback protection, and preservation of other Lyra V1 components. The accepted speech profile is **stable_full + sampled + 1.30×**. A remaining operational limitation is that the shared Ollama endpoint does not expose the required model; the accepted testing route uses a separate isolated model endpoint, and a production one-click launcher for it is still optional/pending.
 
 These are **locally reported development checks**, not a claim of external certification or guaranteed reliability. Sensitive local file inventories, paths, model-store contents, private recordings, and internal configuration details are intentionally excluded.
 
@@ -61,17 +63,17 @@ A separate local-first development-agent prototype reached a **three-module sand
 | --- | --- |
 | Lyra V1 assistant prototype | Active development |
 | German Teacher first controlled V1 microphone turn | **Milestone 1 accepted** |
-| German Teacher multi-turn speech | Three-turn controlled run completed; audio accepted |
-| Grammar-correction consistency | Further validation/fixes pending |
-| Multi-turn memory recall | Final acceptance pending |
+| German Teacher multi-turn speech | Controlled run completed; human audio PASS |
+| Grammar-correction consistency | Targeted fixes locally tested and accepted for V1 core |
+| Multi-turn memory recall | Final controlled recall accepted (HUMAN PASS) |
 | Reply latency optimization | Planned, non-blocking |
 | Animated avatar integration | Separate ongoing work |
 
 ## Next steps
-1. Diagnose and resolve the specifically observed Teacher corrections without changing the accepted speech chain.
-2. Verify multi-turn recall in a controlled, clearly prompted follow-up.
-3. Recheck regression and rollback safeguards after any targeted correction.
-4. Update this public showcase only when results are confirmed.
+1. Optionally simplify daily startup of the isolated local model endpoint without disrupting the shared instance.
+2. Improve reply latency only behind regression checks that protect the accepted speech quality.
+3. Continue longer-session and background-noise reliability testing as separate follow-on work.
+4. Publish additional sanitized demonstrations when approved.
 
 ## Development approach
 Maintain a known-good baseline, isolate staging changes, validate installation changes against an explicit allowlist, preserve rollback options, and test independently before adopting optimizations.
