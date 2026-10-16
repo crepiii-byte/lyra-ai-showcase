@@ -97,9 +97,28 @@ The iterative debugging session exposed several design limitations:
 | Natural-language folder request missed | “Create these files in the src folder” generated root-level modules | Added scoped `src` destination detection and checked explicit path handling |
 | Test import configuration | Independent verification initially imported from the wrong directory | Use project-root package imports for `src.*` modules |
 
-The local test copy underwent syntax checks and focused regression checks after changes. Some temporary rules still reference the example's specific file names; generalized, project-independent validation remains future work.
+The local test copy underwent syntax checks and focused regression checks after changes. A later test-engine update replaced the example-specific three-file dependency rule with a generalized explicit-dependency parser. The replacement passed focused contract tests and the existing regression suite; this is still limited to supported, unambiguous task phrasing.
 
-## 6. Testing evidence and limitations
+## 6. Later October 16 update: generalized dependency validation
+
+Following the three-module staging demonstration, the developer extended the **separate test-engine copy** with a generalized natural-language dependency checker.
+
+The locally reported tests covered:
+
+- Explicit relationships in supported Hungarian and English phrasings (e.g. one module uses or imports another).
+- Correct interpretation of sentence boundaries without splitting `.py` file extensions.
+- Safe recognition of full relative paths; ambiguous basename references are rejected instead of arbitrarily mapped to one of two same-named files.
+- A limited, generalized “other two modules” reference when exactly three planned Python files are present.
+- Rejection of missing required dependency edges.
+- Rejection of circular dependencies, including a reverse edge added to an otherwise correctly linked three-file plan.
+
+The example-specific `order_service.py` / `product_data.py` / `pricing.py` dependency rule was removed from the isolated **test engine**. The explicit contract test and the existing suite reported `EXPLICIT_DEPENDENCY_CONTRACT_3_3_PASS`, `DEV_AGENT_REGRESSION_PASS`, and `GENERIC_DEPENDENCY_REPLACEMENT_PASS`. An additional reverse-dependency test returned a circular-dependency error and `REVERSE_DEPENDENCY_REJECTED_PASS`.
+
+A new local checkpoint was created. The developer reported SHA256 verification of **15 checkpoint files**, plus matching hashes for the three principal program files against the test-engine sources. This verifies the tested snapshot and selected copy matches; it does **not** constitute an independent security audit, complete reproducibility guarantee, or broad performance benchmark.
+
+**Scope:** these were local developer-run tests, not third-party verification. The parser recognizes tested forms, not every way users might describe dependencies; larger projects, ambiguous task intent, and adversarial inputs still need more coverage.
+
+## 7. Testing evidence and limitations
 
 **Reported as passed:**
 - Earlier isolated single-module generation and simple bug-repair experiments.
@@ -119,7 +138,7 @@ The local test copy underwent syntax checks and focused regression checks after 
 - General-purpose multi-project switching and management.
 - A finalized user-facing monitoring/dashboard interface.
 
-## 7. Safety and release boundaries
+## 8. Safety and release boundaries
 
 The work was conducted in a separate development/test setup. Safeguards reported for this setup include a limited Windows account, protected production-project areas, staged candidate files, and explicit suppression of automatic promotion.
 
@@ -127,20 +146,20 @@ The work was conducted in a separate development/test setup. Safeguards reported
 
 This repository intentionally does **not** publish local file inventories, private paths, the development engine, checkpoint backups, runtime logs, generated private source, tokens, API keys, model files, or system account details.
 
-## 8. Roadmap
+## 9. Roadmap
 
 1. Preserve the successful staging baseline as a reproducible checkpoint.
 2. Convert the observed regression scenarios into durable, automated tests.
-3. Replace example-specific dependency contracts with safe generalized validation.
+3. **Completed in the isolated test engine (tested cases):** replace the example-specific dependency rule with generalized validation; extend language and edge-case coverage.
 4. Extend package and subdirectory mapping beyond the tested `src/` pattern.
-5. Test unfamiliar multi-package tasks and larger change sets.
+5. **Next milestone:** test unfamiliar five-file and then larger multi-package tasks, starting with plan-only checks before code generation.
 6. Strengthen sandbox containment, logging hygiene, auditability, and recovery.
 7. Add controlled project selection, task tracking, and an operator dashboard.
 8. Re-evaluate unattended autonomy only after broader correctness and safety testing.
 
-## 9. Project status
+## 10. Project status
 
-**Milestone achieved:** autonomous creation of a small, three-module Python project in an isolated staging area, with independently verified example behavior.
+**Milestones achieved:** creation of a small three-module Python project in isolated staging, developer-verified example behavior, and a separately tested generalized explicit-dependency validator replacing the example-specific rule in the test-engine copy.
 
 **Overall project status:** active prototype development. This milestone does not mean Dev Agent 2.0 is complete, production-ready, or capable of safely implementing arbitrary software projects without oversight.
 
